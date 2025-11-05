@@ -1,0 +1,893 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lutfi - Staf Administrasi Profesional</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #2c3e50;
+            --secondary: #3498db;
+            --accent: #e74c3c;
+            --light: #ecf0f1;
+            --dark: #2c3e50;
+            --gray: #95a5a6;
+            --success: #2ecc71;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f9f9f9;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+        
+        /* Header Styles */
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 100px 0 80px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.1);
+            z-index: 1;
+        }
+        
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .profile-img {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            border: 5px solid white;
+            margin: 0 auto 20px;
+            background-color: #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 60px;
+            color: var(--primary);
+            background: linear-gradient(45deg, #e0e0e0, #f5f5f5);
+        }
+        
+        h1 {
+            font-size: 2.8rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+        
+        .tagline {
+            font-size: 1.4rem;
+            margin-bottom: 20px;
+            opacity: 0.9;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: var(--accent);
+            color: white;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:disabled {
+            background-color: var(--gray);
+            cursor: not-allowed;
+            transform: none;
+        }
+        
+        .btn:hover:not(:disabled) {
+            background-color: #c0392b;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Section Styles */
+        section {
+            padding: 80px 0;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+        
+        .section-title h2 {
+            font-size: 2.2rem;
+            color: var(--primary);
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+        
+        .section-title h2::after {
+            content: '';
+            position: absolute;
+            width: 80px;
+            height: 3px;
+            background-color: var(--secondary);
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        
+        /* About Section */
+        .about-content {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 40px;
+        }
+        
+        .about-text {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .about-text p {
+            margin-bottom: 20px;
+            font-size: 1.1rem;
+        }
+        
+        .skills-highlights {
+            flex: 1;
+            min-width: 300px;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .skill-card {
+            background: white;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .skill-card:hover {
+            transform: translateY(-10px);
+        }
+        
+        .skill-card i {
+            font-size: 2.5rem;
+            color: var(--secondary);
+            margin-bottom: 15px;
+        }
+        
+        .skill-card h3 {
+            margin-bottom: 10px;
+            color: var(--primary);
+        }
+        
+        /* Skills Section */
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        
+        .skill-category {
+            background: white;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .skill-category h3 {
+            color: var(--primary);
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--light);
+        }
+        
+        .skill-item {
+            margin-bottom: 15px;
+        }
+        
+        .skill-name {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        
+        .skill-bar {
+            height: 10px;
+            background-color: #e0e0e0;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+        
+        .skill-level {
+            height: 100%;
+            background: linear-gradient(90deg, var(--secondary), var(--primary));
+            border-radius: 5px;
+        }
+        
+        /* Experience Section */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            width: 4px;
+            background-color: var(--secondary);
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            margin-left: -2px;
+        }
+        
+        .timeline-item {
+            padding: 10px 40px;
+            position: relative;
+            width: 50%;
+            box-sizing: border-box;
+        }
+        
+        .timeline-item:nth-child(odd) {
+            left: 0;
+        }
+        
+        .timeline-item:nth-child(even) {
+            left: 50%;
+        }
+        
+        .timeline-content {
+            padding: 20px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+        
+        .timeline-content h3 {
+            color: var(--primary);
+            margin-bottom: 5px;
+        }
+        
+        .timeline-content .date {
+            color: var(--gray);
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background-color: white;
+            border: 4px solid var(--secondary);
+            border-radius: 50%;
+            top: 15px;
+            right: -10px;
+            z-index: 1;
+        }
+        
+        .timeline-item:nth-child(even)::after {
+            left: -10px;
+        }
+        
+        /* Contact Section */
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        
+        .contact-info {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 25px;
+        }
+        
+        .contact-item i {
+            width: 50px;
+            height: 50px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-size: 1.2rem;
+        }
+        
+        .contact-form {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--secondary);
+            box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        /* Notification Styles */
+        .notification {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background-color: var(--success);
+            color: white;
+            border-radius: 5px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            transform: translateX(150%);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .notification.show {
+            transform: translateX(0);
+        }
+        
+        .notification.error {
+            background-color: var(--accent);
+        }
+        
+        .notification i {
+            font-size: 1.2rem;
+        }
+        
+        /* Loading Spinner */
+        .spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 10px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Footer */
+        footer {
+            background-color: var(--primary);
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+        }
+        
+        .social-links {
+            margin-bottom: 20px;
+        }
+        
+        .social-links a {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 50%;
+            color: white;
+            line-height: 40px;
+            margin: 0 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .social-links a:hover {
+            background-color: var(--secondary);
+            transform: translateY(-5px);
+        }
+        
+        /* Skill Tags */
+        .skill-tag {
+            display: inline-block;
+            padding: 8px 15px;
+            background-color: var(--secondary);
+            color: white;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 5px;
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 31px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                padding-left: 70px;
+                padding-right: 25px;
+            }
+            
+            .timeline-item:nth-child(even) {
+                left: 0;
+            }
+            
+            .timeline-item::after {
+                left: 21px;
+            }
+            
+            .timeline-item:nth-child(even)::after {
+                left: 21px;
+            }
+            
+            h1 {
+                font-size: 2.2rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Notification Element -->
+    <div id="notification" class="notification"></div>
+
+    <!-- Header Section -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="profile-img">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h1>Lutfi</h1>
+                <p class="tagline">Staf Administrasi Profesional</p>
+                <p>Spesialis Pengelolaan Data & Dokumen</p>
+                <a href="#contact" class="btn">Hubungi Saya</a>
+            </div>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <div class="section-title">
+                <h2>Tentang Saya</h2>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <p>Saya Lutfi, seorang staf administrasi berpengalaman dengan keahlian dalam pengelolaan data dan dokumen. Saya memiliki kemampuan yang kuat dalam Microsoft Excel (Data Cleansing & Formatting, Logical IF, Vlookup, Hlookup, Pivot Table), Microsoft PowerPoint, Microsoft Word, Google Sheets, dan Canva.</p>
+                    <p>Saya juga mahir dalam korespondensi menggunakan Gmail serta memahami secara menyeluruh proses dan kebutuhan administrasi. Dengan kemampuan typing speed yang baik, saya dapat menyelesaikan tugas-tugas administratif dengan efisien dan akurat.</p>
+                    <p>Saya selalu berusaha memberikan yang terbaik dalam setiap pekerjaan dan terus mengembangkan kemampuan saya di bidang administrasi dan pengelolaan data.</p>
+                </div>
+                <div class="skills-highlights">
+                    <div class="skill-card">
+                        <i class="fas fa-file-excel"></i>
+                        <h3>Microsoft Excel</h3>
+                        <p>Ahli dalam Data Cleansing, Formatting, Formula, dan Pivot Table</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-file-powerpoint"></i>
+                        <h3>Presentasi</h3>
+                        <p>Membuat presentasi profesional dengan PowerPoint & Google Slides</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-envelope"></i>
+                        <h3>Korespondensi</h3>
+                        <p>Mahir dalam komunikasi email dan pengelolaan korespondensi</p>
+                    </div>
+                    <div class="skill-card">
+                        <i class="fas fa-palette"></i>
+                        <h3>Desain</h3>
+                        <p>Membuat materi visual menarik dengan Canva</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Keahlian</h2>
+            </div>
+            <div class="skills-container">
+                <div class="skill-category">
+                    <h3>Microsoft Office</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Microsoft Excel</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Microsoft Word</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Microsoft PowerPoint</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Google Workspace</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Google Sheets</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Google Slides</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Gmail</span>
+                            <span>95%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 95%"></div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="skill-category">
+                    <h3>Kemampuan Lainnya</h3>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Typing Speed</span>
+                            <span>80%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Canva</span>
+                            <span>85%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <div class="skill-name">
+                            <span>Data Management</span>
+                            <span>90%</span>
+                        </div>
+                        <div class="skill-bar">
+                            <div class="skill-level" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div style="margin-top: 40px; text-align: center;">
+                <h3 style="color: var(--primary); margin-bottom: 20px;">Kemampuan Khusus di Microsoft Excel</h3>
+                <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 15px;">
+                    <span class="skill-tag">Data Cleansing & Formatting</span>
+                    <span class="skill-tag">Logical IF</span>
+                    <span class="skill-tag">SUM</span>
+                    <span class="skill-tag">VLOOKUP</span>
+                    <span class="skill-tag">HLOOKUP</span>
+                    <span class="skill-tag">Pivot Table</span>
+                    <span class="skill-tag">Filter Data</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-title">
+                <h2>Pengalaman</h2>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Staf Administrasi</h3>
+                        <div class="date">2020 - Sekarang</div>
+                        <p>Mengelola data dan dokumen perusahaan, melakukan data cleansing dan formatting menggunakan Microsoft Excel, membuat presentasi untuk meeting, serta menangani korespondensi perusahaan.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Asisten Administrasi</h3>
+                        <div class="date">2018 - 2020</div>
+                        <p>Membantu tim administrasi dalam pengelolaan dokumen, input data, dan pembuatan laporan menggunakan Microsoft Office. Juga bertanggung jawab atas komunikasi email dengan klien.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <h3>Data Entry Specialist</h3>
+                        <div class="date">2016 - 2018</div>
+                        <p>Bertanggung jawab atas input data dengan akurasi tinggi, melakukan data cleansing, dan membuat laporan sederhana menggunakan Microsoft Excel dan Google Sheets.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" style="background-color: #f5f7fa;">
+        <div class="container">
+            <div class="section-title">
+                <h2>Hubungi Saya</h2>
+            </div>
+            <div class="contact-container">
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <div>
+                            <h3>Email</h3>
+                            <p>lutfiwork98@gmail.com</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <div>
+                            <h3>Telepon</h3>
+                            <p>+62 812 3456 7890</p>
+                        </div>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <div>
+                            <h3>Lokasi</h3>
+                            <p>Jakarta, Indonesia</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form">
+                    <form id="contactForm" action="https://formspree.io/f/xqagreoq" method="POST">
+                        <div class="form-group">
+                            <label for="name">Nama</label>
+                            <input type="text" id="name" name="name" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="subject">Subjek</label>
+                            <input type="text" id="subject" name="subject" class="form-control" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="message">Pesan</label>
+                            <textarea id="message" name="message" class="form-control" required></textarea>
+                        </div>
+                        <button type="submit" id="submitBtn" class="btn">
+                            <span id="btnText">Kirim Pesan</span>
+                            <div id="btnSpinner" class="spinner" style="display: none;"></div>
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="social-links">
+                <a href="#"><i class="fab fa-linkedin-in"></i></a>
+                <a href="#"><i class="fab fa-twitter"></i></a>
+                <a href="#"><i class="fab fa-instagram"></i></a>
+                <a href="#"><i class="fab fa-facebook-f"></i></a>
+            </div>
+            <p>&copy; 2023 Lutfi. All Rights Reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Form submission handling dengan Formspree
+        document.getElementById('contactForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const btnText = document.getElementById('btnText');
+            const btnSpinner = document.getElementById('btnSpinner');
+            
+            // Ambil nilai dari form
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Validasi sederhana
+            if (!name || !email || !subject || !message) {
+                showNotification('Harap isi semua field!', 'error');
+                return;
+            }
+            
+            // Validasi email
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+            if (!emailRegex.test(email)) {
+                showNotification('Format email tidak valid!', 'error');
+                return;
+            }
+            
+            // Tampilkan loading state
+            submitBtn.disabled = true;
+            btnText.textContent = 'Mengirim...';
+            btnSpinner.style.display = 'inline-block';
+            
+            try {
+                // Kirim data ke Formspree
+                const formData = new FormData(this);
+                
+                const response = await fetch(this.action, {
+                    method: 'POST',
+                    body: formData,
+                    headers: {
+                        'Accept': 'application/json'
+                    }
+                });
+                
+                if (response.ok) {
+                    showNotification('Pesan berhasil dikirim! Lutfi akan membalas dalam 1x24 jam.', 'success');
+                    this.reset();
+                } else {
+                    throw new Error('Gagal mengirim pesan');
+                }
+                
+            } catch (error) {
+                console.error('Error:', error);
+                showNotification('Maaf, terjadi kesalahan. Silakan coba lagi atau hubungi langsung ke lutfiwork98@gmail.com', 'error');
+            } finally {
+                // Reset loading state
+                submitBtn.disabled = false;
+                btnText.textContent = 'Kirim Pesan';
+                btnSpinner.style.display = 'none';
+            }
+        });
+        
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message, type = 'success') {
+            const notification = document.getElementById('notification');
+            notification.innerHTML = '';
+            
+            // Tambahkan icon berdasarkan type
+            const icon = document.createElement('i');
+            if (type === 'success') {
+                icon.className = 'fas fa-check-circle';
+                notification.style.backgroundColor = 'var(--success)';
+            } else {
+                icon.className = 'fas fa-exclamation-triangle';
+                notification.style.backgroundColor = 'var(--accent)';
+            }
+            
+            notification.appendChild(icon);
+            notification.appendChild(document.createTextNode(message));
+            notification.classList.add('show');
+            
+            // Sembunyikan notifikasi setelah 5 detik
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 5000);
+        }
+        
+        // Smooth scrolling untuk anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // Animasi skill bars saat di-scroll
+        function animateSkillBars() {
+            const skillBars = document.querySelectorAll('.skill-level');
+            skillBars.forEach(bar => {
+                const width = bar.style.width;
+                bar.style.width = '0';
+                
+                setTimeout(() => {
+                    bar.style.width = width;
+                    bar.style.transition = 'width 1.5s ease-in-out';
+                }, 300);
+            });
+        }
+        
+        // Jalankan animasi saat halaman dimuat
+        window.addEventListener('load', animateSkillBars);
+    </script>
+</body>
+</html>
